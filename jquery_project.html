@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jquery project</title>
+        <link href="jquery-ui.css" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+        <script src="jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0%;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: cursive;
+        }
+        #header{
+            width:100%;
+            background-color: rgb(172, 165, 165);
+            padding: 35px;
+            height: 40px;
+        }
+        #logo{
+            font-size:large;
+            float:left;
+            font-weight: bold;
+        }
+        #btncont{
+            width: 280px;
+            margin: 0 auto;
+            color:rgb(14, 1, 1);
+            
+        }
+        .togglebtn{
+            color:rgb(10, 10, 10);
+            position: relative;
+            float:left;
+           border:1px solid black;
+            padding:4px ;            
+          font-weight:bold;
+        }
+        #html{
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+            
+        }
+        .active{
+            background-color: #E8F2FF;
+            
+        }
+        .highlightedbutton{
+            background-color:#E8F2FF;
+            cursor: pointer;
+        }
+        textarea{
+           border-top: none;
+           border-color: grey;
+            resize: none;
+        }
+        .panel{
+           float:left;
+           width: 70%;
+           border-left: none;
+        }
+        iframe{
+            border: none;
+        }
+        .hidden{
+            display:none;
+        }
+       
+    </style>
+    <body>
+  <div id="header">
+    <div id="logo">
+        code player
+    </div>
+    <div id="btncont">
+        <div class="togglebtn active" id="html">HTML</div>
+        <!-- <div class="togglebtn" id="css">CSS</div>
+        <div class="togglebtn" id="javascript">JAVASCRIPT</div> -->
+         <div class="togglebtn active" id="output">output</div>
+    </div>
+  </div>
+  <div id="bodycon">
+    <textarea id="htmlpanel" class="panel">hi cutie 🙌</textarea>
+    <textarea id="csspanel" class="panel hidden">p {color:green };</textarea>
+    <textarea id="jspanel" class="panel hidden">alert("hello");</textarea>
+    <iframe id="outputpanel" class="panel"></iframe>
+  </div>
+  <script type="text/javascript">
+   $(".togglebtn").hover(function(){
+    $(this).addClass("highlightedbutton");
+   
+   },function(){
+    $(this).removeClass("highlightedbutton");
+
+   });
+   $(".togglebtn").click(function(){
+    $(this).toggleClass("active");
+    $("this").removeClass("highlightedbutton");
+    var panelid=$(this).attr("id")+"panel";
+    $("#"+panelid).toggleClass(".hidden");
+    var numberOfActivePanels=4-$('.hidden').length;
+    $(".panel").width(($(window).width()/numberOfActivePanels)-10); 
+   })
+
+$(".panel").height($(window).height()-$("#header").height()-10);  
+$(".panel").width(($(window).width()/2)-10); 
+$("iframe").contents().find("html").html($("#htmlpanel").val()); 
+$("textarea").on('change keyup paste',function(){
+    $("iframe").contents().find("html").html($("#htmlpanel").val());
+   
+});
+   
+  </script>
+    </body>
+</html>
